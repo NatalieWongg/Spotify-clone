@@ -62,6 +62,11 @@ let openMenu = ref(false)
 
       </span>>
     </div>
+    <div
+      id="SideNav"
+      class="h-[100%] p-6 w-[240px] fixed z-50 bg-black"
+    >
+    </div>
   </div>
 </template>
 
