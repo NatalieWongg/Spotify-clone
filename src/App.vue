@@ -72,7 +72,10 @@
           <div class="my-8"></div>
           <ul>
             <RouterLink to="/">
-              
+              <MenuItem class="ml-[1px]" :iconSize="23" name="Home" iconString="home" pageUrl="/"/>
+            </RouterLink>
+            <RouterLink to="/search">
+              <MenuItem class="ml-[1px]" :iconSize="23" name="Search" iconString="search" pageUrl="/search"/>
             </RouterLink>
           </ul>
     </div>
