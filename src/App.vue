@@ -2,13 +2,16 @@
   import { ref} from 'vue'
   import { RouterLink, RouterView } from 'vue-router'
   import MenuItem from './components/MenuItem.vue';
-
+  import MusicPlayer from './components/MusicPlayer.vue';
   import ChevronUp from 'vue-material-design-icons/ChevronUp.vue';
   import ChevronDown from 'vue-material-design-icons/ChevronDown.vue';
   import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
   import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
 
-
+import {useSongStore} from '../stores/song'
+import { storeToRefs } from 'pinia';
+const useSong = useSongStore()
+const {isPlaying, audio, currentTrack,currentArtist} = storeToRefs(useSong)
   let openMenu = ref(false)
 </script>
 
@@ -71,19 +74,19 @@
           </RouterLink>
           <div class="my-8"></div>
           <ul>
-            <RouterLink to="/">
-              <MenuItem class="ml-[1px]" :iconSize="23" name="Home" iconString="home" pageUrl="/"/>
-            </RouterLink>
-            <RouterLink to="/search">
-              <MenuItem class="ml-[1px]" :iconSize="24" name="Search" iconString="search" pageUrl="/search"/>
-            </RouterLink>
-            <RouterLink to="/library">
-              <MenuItem class="ml-[1px]" :iconSize="23" name="Library" iconString="library" pageUrl="/library"/>
-            </RouterLink>
-            <div class="py-3.5"></div>
-            <MenuItem :iconSize="24" name="Create Playlist" iconString="playlist" pageUrl="/playlist"/>
-            <MenuItem class="ml-[1px]" :iconSize="27" name="Liked Songs" iconString="liked" pageUrl="/liked"/>
-          </ul>
+                <RouterLink to="/">
+                    <MenuItem class="ml-[1px]" :iconSize="23" name="Home" iconString="home" pageUrl="/" />
+                </RouterLink>
+                <RouterLink to="/search">
+                    <MenuItem class="ml-[1px]" :iconSize="24" name="Search" iconString="search" pageUrl="/search" />
+                </RouterLink>
+                <RouterLink to="/library">
+                    <MenuItem class="ml-[2px]" :iconSize="23" name="Your Library" iconString="library" pageUrl="/library" />
+                </RouterLink>
+                <div class="py-3.5"></div>
+                <MenuItem :iconSize="24" name="Create Playlist" iconString="playlist" pageUrl="/playlist" />
+                <MenuItem class="-ml-[1px]" :iconSize="27" name="Liked Songs" iconString="liked" pageUrl="/liked" />
+            </ul>
           <div class="border-b border-b-gray-700"></div>
           <ul>
             <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #1</li>
@@ -110,5 +113,7 @@
     <RouterView />
     <div class="mb-100pc"></div>
   </div>
+
+  <MusicPlayer v-f="currentTrack"/>
 </template>
 
