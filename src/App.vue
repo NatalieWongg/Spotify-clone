@@ -1,13 +1,12 @@
 <script setup>
-  import { ref, onMounted} from 'vue'
+  import { ref, onMounted } from 'vue'
   import { RouterLink, RouterView } from 'vue-router'
   import MenuItem from './components/MenuItem.vue';
-  import MusicPlayer from './components/MusicPlayer.vue';
+  import MusicPlayer from './components/MusicPlayer.vue'
   import ChevronUp from 'vue-material-design-icons/ChevronUp.vue';
   import ChevronDown from 'vue-material-design-icons/ChevronDown.vue';
   import ChevronRight from 'vue-material-design-icons/ChevronRight.vue';
   import ChevronLeft from 'vue-material-design-icons/ChevronLeft.vue';
-
 
   import { useSongStore } from './stores/song'
   import { storeToRefs } from 'pinia';
@@ -15,14 +14,15 @@
   const { isPlaying, currentTrack } = storeToRefs(useSong)
 
   onMounted(() => { isPlaying.value = false })
+
   let openMenu = ref(false)
 </script>
 
 <template>
-  <div>
-    <div 
-      id="TopNav"
-        class="
+    <div>
+        <div 
+          id="TopNav"
+          class="
             w-[calc(100%-240px)] 
             h-[60px] 
             fixed 
@@ -50,9 +50,9 @@
                     <img 
                       class="rounded-full" 
                       width="27"
-                      src="https://yt3.ggpht.com/yti/ANjgQV9ENmKliNTld3DnP2emWZLDoSF5E_4Gt3GEdplrYKDfpnQ=s88-c-k-c0x00ffffff-no-rj"
+                      src="https://yt3.ggpht.com/e9o-24_frmNSSVvjS47rT8qCHgsHNiedqgXbzmrmpsj6H1ketcufR1B9vLXTZRa30krRksPj=s88-c-k-c0x00ffffff-no-rj-mo"
                     >
-                    <div class="text-white text-[14px] ml-1.5 font-semibold">Natalie Wong</div>
+                    <div class="text-white text-[14px] ml-1.5 font-semibold">John Weeks Dev</div>
                     <ChevronDown v-if="!openMenu" @click="openMenu = true" fillColor="#FFFFFF" :size="25" />
                     <ChevronUp v-else @click="openMenu = false" fillColor="#FFFFFF" :size="25" />
                 </div>
@@ -68,15 +68,12 @@
         </div>
 
 
-        <div 
-          id="SideNav" 
-          class="h-[100%] p-6 w-[240px] fixed z-50 bg-black"
-        >
-          <RouterLink to="/">
-            <img width="125" src="/images/icons/spotify-logo.png">
-          </RouterLink>
-          <div class="my-8"></div>
-          <ul>
+        <div id="SideNav" class="h-[100%] p-6 w-[240px] fixed z-50 bg-black">
+            <RouterLink to="/">
+              <img width="125" src="/images/icons/spotify-logo.png">
+            </RouterLink>
+            <div class="my-8"></div>
+            <ul>
                 <RouterLink to="/">
                     <MenuItem class="ml-[1px]" :iconSize="23" name="Home" iconString="home" pageUrl="/" />
                 </RouterLink>
@@ -90,33 +87,36 @@
                 <MenuItem :iconSize="24" name="Create Playlist" iconString="playlist" pageUrl="/playlist" />
                 <MenuItem class="-ml-[1px]" :iconSize="27" name="Liked Songs" iconString="liked" pageUrl="/liked" />
             </ul>
-          <div class="border-b border-b-gray-700"></div>
-          <ul>
-            <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #1</li>
-            <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #2</li>
-            <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #3</li>
-            <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #4</li>
-          </ul>
+            <div class="border-b border-b-gray-700"></div>
+            <ul>
+                <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #1</li>
+                <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #2</li>
+                <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #3</li>
+                <li class="font-semibold text-[13px] mt-3 text-gray-300 hover:text-white">My Playlist #4</li>
+            </ul>
+        </div>
     </div>
-  </div>
-  <div
-    class="
-      fixed
-      right-0
-      top-0
-      w-[calc(100%-240px)]
-      overflow-auto
-      h-full
-      bg-gradient-to-b
-      from-[#1C1C1C]
-      to-black
-    "
-  >
-    <div class="mt-[70px]"></div>
-    <RouterView />
-    <div class="mb-100pc"></div>
-  </div>
 
-  <MusicPlayer/>
+    <div
+        class="
+            fixed
+            right-0
+            top-0
+            w-[calc(100%-240px)]
+            overflow-auto
+            h-full
+            bg-gradient-to-b
+            from-[#1C1C1C]
+            to-black
+        "
+    >
+        <div class="mt-[70px]"></div>
+        <RouterView />
+        <div class="mb-[100px]"></div>
+    </div>
+
+    <MusicPlayer v-if="currentTrack"/>
 </template>
+
+
 
