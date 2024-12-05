@@ -4,6 +4,11 @@ import Play from 'vue-material-design-icons/Play.vue';
 import Pause from 'vue-material-design-icons/Pause.vue';
 import Heart from 'vue-material-design-icons/Heart.vue';
 
+import { useSongStore } from './stores/song'
+import { storeToRefs } from 'pinia';
+const useSong = useSongStore()
+const { isPlaying, currentTrack } = storeToRefs(useSong)
+
 let isHover = ref(false)
 let isTrackTime = ref(null )
 
